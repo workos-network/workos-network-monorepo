@@ -1,0 +1,48 @@
+{
+  "name": "react-monday-ui",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/workos-network/react-monday-ui#readme",
+  "main": "src/index.js",
+  "main:src": "src/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "cross-env BABEL_ENV=production babel src --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workos-network/react-monday-ui.git"
+  },
+  "author": "Kames Geraghty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/workos-network/react-monday-ui/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "match-sorter": "^4.2.0",
+    "react": ">=16.8",
+    "react-dom": ">=16.8",
+    "react-hook-form": "^6.2.0",
+    "react-table": "^7.3.3",
+    "theme-ui": "^0.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "cross-env": "^6.0.3",
+    "eslint": "latest",
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  }
+}
