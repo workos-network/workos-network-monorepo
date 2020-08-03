@@ -16,7 +16,7 @@ import backgrounds from "./theme.backgrounds";
 export default {
   ...base,
   ...colors,
-  // components,
+  components,
   // common,
   // buttons,
   // backgrounds,

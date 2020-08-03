@@ -50,6 +50,10 @@ export const ITEMS_QUERY = `
       creator_id
       name
       created_at
+      group {
+        id
+        title
+      }
       board {
         id
         name

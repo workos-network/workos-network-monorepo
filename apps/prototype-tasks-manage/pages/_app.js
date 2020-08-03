@@ -147,12 +147,12 @@ class Application extends App {
             }
 
             main {
-              padding: 5rem 0;
+              padding: 0;
               flex: 1;
               display: flex;
               flex-direction: column;
-              justify-content: center;
-              align-items: center;
+              // justify-content: center;
+              // align-items: center;
             }
 
             footer {
@@ -178,22 +178,22 @@ class Application extends App {
             input {
               box-shadow: none;
               box-sizing: border-box;
-              display: block;
+              display: inline-block;
               font-family: var(--font-sans);
               font-size: 14px;
               line-height: 26px;
-              width: 100%;
+              // width: 100%;
               color: #000;
               background-color: transparent;
               caret-color: #000;
               text-overflow: ellipsis;
               appearance: none;
               border-radius: 0px;
-              border-width: initial;
-              border-style: none;
-              border-color: initial;
+              border-width: 1px;
+              border-style: solid;
+              border-color: gray;
               border-image: initial;
-              padding: 0px;
+              padding: 4px;
               outline: 0px;
             }
 

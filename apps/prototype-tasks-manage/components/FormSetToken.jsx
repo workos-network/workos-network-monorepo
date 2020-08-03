@@ -52,6 +52,7 @@ const FormModalTokenSet = ({ updateDefault, sx, ...props }) => {
           borderStyle: "solid",
           borderRadius: 4,
           padding: 1,
+          width: "100%",
           "&:focus": {
             borderColor: "charcoal",
           },
