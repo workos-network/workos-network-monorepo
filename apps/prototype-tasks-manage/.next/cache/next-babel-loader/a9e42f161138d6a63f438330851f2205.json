@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { useContext } from 'react';\nimport Context from './Context';\nexport default (function () {\n  return useContext(Context);\n});","map":null,"metadata":{},"sourceType":"module"}

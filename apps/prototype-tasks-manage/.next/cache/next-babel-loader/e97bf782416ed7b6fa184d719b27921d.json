@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { SET_TOKEN } from \"../lib/types\";\nexport const setToken = (state, dispatch) => async token => {\n  dispatch({\n    type: SET_TOKEN,\n    payload: {\n      token\n    }\n  });\n};","map":null,"metadata":{},"sourceType":"module"}

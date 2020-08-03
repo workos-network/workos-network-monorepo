@@ -1,1 +1,0 @@
-{"ast":null,"code":"/**\n * @name EthersContext\n * @description Initialize Ethers context.\n */\nimport { createContext } from \"react\";\nconst Context = createContext({\n  isClientAuthorized: false,\n  isDevMode: false,\n  client: undefined,\n  url: undefined,\n  token: undefined\n});\nexport default Context;","map":null,"metadata":{},"sourceType":"module"}
