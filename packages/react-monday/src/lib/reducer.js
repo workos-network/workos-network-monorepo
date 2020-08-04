@@ -28,7 +28,6 @@ const reducerActions = (state, action) => {
         token: payload.token,
       };
     case AUTHORIZE_CLIENT:
-      console.log(payload, "payload.tokenpayload.token");
       return {
         ...state,
         isClientAuthorized: true,

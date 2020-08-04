@@ -14,7 +14,7 @@ import { BOARDS_QUERY } from "../lib/graphql/queries";
 export const useMondayBoardsQuery = ({ limit, page }) => {
   const [parsed, setParsed] = React.useState([]);
   const { loading, error, data, refetch, subscribeToMore } = useQuery(
-    boardsQuery,
+    BOARDS_QUERY,
     {
       variables: {
         limit: 10,

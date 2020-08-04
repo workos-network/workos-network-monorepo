@@ -1,19 +1,19 @@
 /* --- Global --- */
 import { PropTypes } from "prop-types";
 import { useForm } from "react-hook-form";
-import { useMondayUpdateCreateMutation } from "react-monday";
-import { useMondayBoardsQuery } from "react-monday";
 import { withMonday, setToken } from "react-monday";
 import { Box } from "theme-ui";
 
 /**
- * @name FormModalTokenSet
- * @description Set authorization token for Monday Queries
+ * @name FormSetToken
+ * @description Set authorization token for Monday Queries.
  * @version 0.0.0
  */
 
-const FormModalTokenSet = ({ updateDefault, sx, ...props }) => {
+const FormSetToken = ({ updateDefault, sx, ...props }) => {
+  /* --- Form Hook State --- */
   const monday = withMonday();
+  const { handleSubmit, register, errors, setValue, formState } = useForm();
 
   React.useEffect(() => {
     if (monday.token) {
@@ -21,16 +21,8 @@ const FormModalTokenSet = ({ updateDefault, sx, ...props }) => {
     }
   }, []);
 
-  React.useEffect(() => {
-    console.log(monday, "mondaymonday");
-  }, [monday]);
-
-  /* --- Form Hook State --- */
-  const { handleSubmit, register, errors, setValue, formState } = useForm();
-
   /* --- Submit Handler --- */
   const onSubmit = async (values) => {
-    console.log(values, "setToken");
     if (values) {
       monday.setToken(values.token);
     }
@@ -77,15 +69,15 @@ const FormModalTokenSet = ({ updateDefault, sx, ...props }) => {
   );
 };
 
-FormModalTokenSet.defaultProps = {
+FormSetToken.defaultProps = {
   sx: {},
   label: "Submit",
   labelLoading: "Loading...",
   labelComplete: "Complete",
 };
 
-FormModalTokenSet.propTypes = {
+FormSetToken.propTypes = {
   sx: PropTypes.object,
 };
 
-export default FormModalTokenSet;
+export default FormSetToken;

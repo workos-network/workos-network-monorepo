@@ -62,7 +62,6 @@ const Provider = ({ children, url, token, devMode }) => {
 
   React.useEffect(() => {
     if (state.token) {
-      console.log(state.token, "state.token2");
       dispatch({
         type: AUTHORIZE_CLIENT,
         payload: { token: state.token },
@@ -73,7 +72,7 @@ const Provider = ({ children, url, token, devMode }) => {
   const actions = enhanceActions(actionList, state, dispatch);
 
   React.useEffect(() => {
-    console.log(state, "monday state");
+    // console.log(state, "monday state");
   }, [state]);
 
   return (

@@ -52,9 +52,7 @@ export const useItemsQuery = ({ limit, page }) => {
   React.useEffect(
     (inputs) => {
       if (state.loading) {
-        console.log("requesting");
         if (monday.client && monday.isClientAuthorized) {
-          console.log(monday.client, "monday.client");
           monday.client
             .request({
               query: ITEMS_QUERY,

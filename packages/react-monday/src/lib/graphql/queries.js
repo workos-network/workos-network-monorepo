@@ -6,7 +6,7 @@ export const BOARDS_QUERY = `
     $page: Int
     $ids: [Int]
     $board_kid: BoardKind
-    $state: String
+    $state: State
   ) {
     boards(
       limit: $limit
@@ -54,6 +54,12 @@ export const ITEMS_QUERY = `
         id
         title
       }
+      assets {
+        id
+        url_thumbnail
+        name
+        url
+      }
       board {
         id
         name
@@ -67,6 +73,36 @@ export const ITEMS_QUERY = `
         type
         value
       }
+      updates {
+        id
+        text_body
+        created_at
+        assets {
+          id
+        }
+        creator {
+          id
+          photo_thumb_small
+          name
+        }
+        
+      }
     }
   }
+`;
+
+export const SUB_ITEMS_QUERY = `
+query($ids: [Int]) {
+  items(ids: $ids) {
+    column_values(ids: "subitems") {
+      id
+      type
+      text
+      type
+      additional_info
+      value
+      title
+    }
+  }
+}
 `;

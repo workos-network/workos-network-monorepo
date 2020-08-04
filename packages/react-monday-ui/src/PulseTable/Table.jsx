@@ -1,12 +1,10 @@
 import idx from "idx";
 import React from "react";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import FilterListIcon from "@material-ui/icons/FilterList";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import SortIcon from "@material-ui/icons/Sort";
 import styled from "@emotion/styled";
+import { Box, Flex } from "theme-ui";
 import {
   useTable,
   usePagination,
@@ -16,26 +14,21 @@ import {
   useExpanded,
   useRowSelect,
 } from "react-table";
-import matchSorter from "match-sorter";
 import { useItemsQuery, withMonday } from "react-monday";
+import { ExpandMore, ExpandLess } from "../common";
 
-import Atom from "./Atoms";
-import { Box, Flex } from "theme-ui";
-
-import ItemColumnsTable from "./ItemColumnsTable";
-
-import { ExpandMore, ExpandLess } from "./common";
+import SubRow from "./SubRow";
 
 import {
   DefaultColumnFilter,
   SelectColumnFilter,
   fuzzyTextFilterFn,
-} from "./table";
+} from "./tableFunctions";
 
 const Styles = styled.div`
   padding: 1rem;
 
-  table {
+  table.parent {
     border-radius: 6px;
     background: #fff;
     border-spacing: 0;
@@ -49,68 +42,68 @@ const Styles = styled.div`
         }
       }
     }
+  }
 
-    th {
-      background: #292f4c;
-      color: white;
-      :nth-of-type(1) {
-        text-align: center;
-        vertical-align: middle;
-        width: 5%;
-      }
-      :nth-of-type(2) {
-        width: 50%;
-      }
-      :nth-of-type(3) {
-        width: 50px;
-      }
-      :nth-of-type(4) {
-        width: 100px;
-      }
-    }
-    td {
-      :nth-of-type(1) {
-        text-align: center;
-        vertical-align: middle;
-        width: 5%;
-      }
-      :nth-of-type(2) {
-        width: 70%;
-      }
-      :nth-of-type(3) {
-        width: 10%;
-      }
-      :nth-of-type(4) {
-        width: 10%;
+  table.parent > thead {
+      th {
+        background: #292f4c;
+        color: white;
+        :nth-of-type(1) {
+          vertical-align: middle;
+          width: 5%;
+        }
+        :nth-of-type(2) {
+          width: 50%;
+        }
+        :nth-of-type(3) {
+          width: 50px;
+        }
+        :nth-of-type(4) {
+          width: 100px;
+        }
       }
     }
 
-    tbody {
+    table.parent > tbody:nth-of-type(1) {
+      > td {
+        :nth-of-type(1) {
+          vertical-align: middle;
+          width: 5%;
+        }
+        :nth-of-type(2) {
+          width: 70%;
+        }
+        :nth-of-type(3) {
+          width: 10%;
+        }
+        :nth-of-type(4) {
+          width: 10%;
+        }
+      }
       > tr {
         :nth-of-type(odd) {
           background: #f2f2f2;
         }
       }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid #e4e4e4;
-      border-right: 1px solid #e4e4e4;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-
-    td {
-      input {
-        font-size: 1rem;
-        padding: 0;
+      > th,
+      td {
         margin: 0;
-        border: 0;
+        padding: 0.5rem;
+        border-bottom: 1px solid #e4e4e4;
+        border-right: 1px solid #e4e4e4;
+
+        :last-child {
+          border-right: 0;
+        }
+      }
+
+      td {
+        input {
+          font-size: 1rem;
+          padding: 0;
+          margin: 0;
+          border: 0;
+        }
       }
     }
   }
@@ -203,7 +196,7 @@ function Table({
   // Render the UI for your table
   return (
     <>
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="parent">
         {/* 
         ------------
         Table Head 
@@ -214,21 +207,21 @@ function Table({
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>
-                  <Atom.Flex
+                  <Flex
                     sx={{
                       alignItems: "center",
                       width: "100%",
                     }}
                   >
                     <div>
-                      <Atom.Flex
+                      <Flex
                         {...column.getSortByToggleProps()}
                         sx={{ alignItems: "center" }}
                       >
-                        <Atom.Box as="span" sx={{ mr: 0 }}>
+                        <Box as="span" sx={{ mr: 0 }}>
                           {column.render("Header")}
-                        </Atom.Box>
-                        <Atom.Box sx={{ mx: 2, mr: 3 }}>
+                        </Box>
+                        <Box sx={{ mx: 2, mr: 3 }}>
                           {column.isSorted ? (
                             column.isSortedDesc ? (
                               <ArrowDownwardIcon />
@@ -238,13 +231,13 @@ function Table({
                           ) : (
                             <SortIcon />
                           )}
-                        </Atom.Box>
-                      </Atom.Flex>
+                        </Box>
+                      </Flex>
                     </div>
-                    <Atom.Box sx={{ ml: 0 }}>
+                    <Box sx={{ ml: 0 }}>
                       {column.canFilter ? column.render("Filter") : null}
-                    </Atom.Box>
-                  </Atom.Flex>
+                    </Box>
+                  </Flex>
                 </th>
               ))}
             </tr>
@@ -297,8 +290,8 @@ function Table({
         Pagination can be built however you'd like.
         This is just a very basic UI implementation:
       */}
-      <Atom.Flex sx={{ justifyContent: "space-between" }}>
-        <Atom.Box sx={{ flex: 1 }}>
+      <Flex sx={{ justifyContent: "space-between" }}>
+        <Box sx={{ flex: 1 }}>
           <div className="pagination">
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
               {"<<"}
@@ -346,9 +339,9 @@ function Table({
               ))}
             </select>
           </div>
-        </Atom.Box>
-        <Atom.Box sx={{ alignSelf: "center" }}>{props.footer}</Atom.Box>
-      </Atom.Flex>
+        </Box>
+        <Box sx={{ alignSelf: "center" }}>{props.footer}</Box>
+      </Flex>
     </>
   );
 }
@@ -408,8 +401,6 @@ function ItemsTable(props) {
 
   // const {data, refetch} = useItemsQuery({});
 
-  // console.log(data);
-
   // We need to keep the table from resetting the pageIndex when we
   // Update data. So we can keep track of that flag with a ref.
   const skipResetRef = React.useRef(false);
@@ -448,20 +439,7 @@ function ItemsTable(props) {
 
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(
-    ({ row }) => (
-      <Flex>
-        <Atom.Box sx={{ flex: 5 }}></Atom.Box>
-        <Atom.Box
-          sx={{
-            bg: "solitude",
-            p: 4,
-            flex: 2,
-          }}
-        >
-          {/* <ItemColumnsTable data={row.original} /> */}
-        </Atom.Box>
-      </Flex>
-    ),
+    ({ row }) => <SubRow {...row} />,
     []
   );
 

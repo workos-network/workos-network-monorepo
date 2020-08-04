@@ -308,7 +308,6 @@ function Table({
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
-            console.log(row, "rowrow");
             return (
               <>
                 <tr {...row.getRowProps()}>

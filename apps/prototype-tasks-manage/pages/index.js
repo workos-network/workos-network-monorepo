@@ -1,11 +1,11 @@
-import { ItemsTable } from "react-monday-ui";
+import { PulseTable } from "react-monday-ui";
 import { ModalSetToken } from "../components";
 import { Box } from "theme-ui";
 
 const Home = () => (
   <>
     <div className="container">
-      <ItemsTable footer={<Settings />} />
+      <PulseTable footer={<Settings />} />
       <Box
         sx={{
           top: 10,
@@ -18,7 +18,6 @@ const Home = () => (
     <style jsx>{`
       .container {
         width: 100%;
-        max-width: 1200px;
       }
     `}</style>
   </>
@@ -28,10 +27,10 @@ const Settings = () => (
   <Box
     as="span"
     sx={{
-      background: "#c8603ee0",
+      background: "#39d450",
       color: "white",
       boxShadow: 0,
-      // border: "1px solid black",
+
       borderRadius: 4,
       cursor: "pointer",
       p: 2,
